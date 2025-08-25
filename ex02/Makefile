@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = ex02
 FLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = megaphone.cpp
+SRCS = tests.cpp Account.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
