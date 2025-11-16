@@ -1,7 +1,8 @@
 #include "PhoneBook.hpp"
-#include <iostream>
-#include <limits>
-#include <iomanip>
+#include <cstdlib>
+#include <cerrno>
+#include <climits>
+#include <cctype>
 
 PhoneBook::PhoneBook() : nextIndex(0), size(0) {}
 
@@ -9,7 +10,9 @@ PhoneBook::~PhoneBook() {}
 
 void PhoneBook::addContact()
 {
-    contacts[nextIndex].setInfo();
+    if (!contacts[nextIndex].setInfo())
+        return;
+
     nextIndex = (nextIndex + 1) % 8;
     if (size < 8)
         size++;
@@ -32,20 +35,40 @@ void PhoneBook::searchContact() const
 
     std::cout << "Enter index to view details: ";
     int index;
-    if (!(std::cin >> index))
-	{
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::string line;
+    if (!std::getline(std::cin, line)) {
+        return;
+    }
+
+    // Use strtol to parse the integer and detect invalid chars / overflow
+    const char *cstr = line.c_str();
+    char *endptr = NULL;
+    errno = 0;
+    long val = std::strtol(cstr, &endptr, 10);
+    if (endptr == cstr) {
+        // no conversion performed
         std::cout << "Invalid input." << std::endl;
         return;
     }
-    std::cin.ignore();
+    // skip trailing whitespace
+    while (*endptr && std::isspace(static_cast<unsigned char>(*endptr))) ++endptr;
+    if (*endptr != '\0') {
+        // leftover non-space characters
+        std::cout << "Invalid input." << std::endl;
+        return;
+    }
+    if (errno == ERANGE || val < INT_MIN || val > INT_MAX) {
+        // out of int range
+        std::cout << "Invalid input." << std::endl;
+        return;
+    }
+    index = static_cast<int>(val);
     if (index < 0 || index >= size)
-	{
+    {
         std::cout << "Invalid index." << std::endl;
     }
-	else
-	{
+    else
+    {
         contacts[index].displayFull();
     }
 }

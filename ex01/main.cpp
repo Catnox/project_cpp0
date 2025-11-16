@@ -1,6 +1,5 @@
 #include "PhoneBook.hpp"
-#include <iostream>
-#include <string>
+#include "Contact.hpp"
 
 int main()
 {

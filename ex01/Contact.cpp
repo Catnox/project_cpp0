@@ -1,25 +1,74 @@
 #include "Contact.hpp"
 
-Contact::Contact() : firstName(""), lastName(""), nickname(""),
-                     phoneNumber(""), darkestSecret("") {}
+Contact::Contact() : _firstName(""), _lastName(""), _nickname(""),
+                     _phoneNumber(""), _darkestSecret("") {}
+  
+Contact::~Contact() {}
 
-void Contact::setInfo()
-{
-    std::cout << "First name: ";
-    std::getline(std::cin, firstName);
-    std::cout << "Last name: ";
-    std::getline(std::cin, lastName);
-    std::cout << "Nickname: ";
-    std::getline(std::cin, nickname);
-    std::cout << "Phone number: ";
-    std::getline(std::cin, phoneNumber);
-    std::cout << "Darkest secret: ";
-    std::getline(std::cin, darkestSecret);
+static bool isDigits(const std::string &s) {
+    if (s.empty())
+        return false;
+    for (size_t i = 0; i < s.size(); ++i)
+        if (!std::isdigit(static_cast<unsigned char>(s[i])))
+            return false;
+    return true;
 }
 
-bool Contact::isEmpty() const
+static bool isLettersNoSpace(const std::string &s) {
+    if (s.empty())
+        return false;
+    for (size_t i = 0; i < s.size(); ++i)
+        if (!std::isalpha(static_cast<unsigned char>(s[i])))
+            return false;
+    return true;
+}
+
+static bool promptValidate(const std::string &prompt, std::string &out,
+                     bool (*validator)(const std::string&), const std::string &errMsg)
 {
-    return firstName.empty();
+    std::string line;
+    while (true) {
+        std::cout << prompt;
+        if (!std::getline(std::cin, line)) {
+            return false;
+        }
+        if (line.empty()) {
+            std::cout << "No input\n";
+            continue;
+        }
+        if (validator(line)) {
+            out = line;
+            return true;
+        }
+        std::cout << errMsg << "\n";
+    }
+}
+
+static bool notEmpty(const std::string &s) { return !s.empty(); }
+
+bool Contact::setInfo()
+{
+    if (!promptValidate("First name: ", _firstName, isLettersNoSpace,
+                        "First name must contain only letters and no spaces."))
+        return false;
+
+    if (!promptValidate("Last name: ", _lastName, isLettersNoSpace,
+                        "Last name must contain only letters and no spaces."))
+        return false;
+
+    if (!promptValidate("Nickname: ", _nickname, isLettersNoSpace,
+                        "Nickname must contain only letters and no spaces."))
+        return false;
+
+    if (!promptValidate("Phone number: ", _phoneNumber, isDigits,
+                        "Phone number must contain only digits."))
+        return false;
+
+    if (!promptValidate("Darkest secret: ", _darkestSecret, notEmpty,
+                        "Darkest secret cannot be empty."))
+        return false;
+
+    return true;
 }
 
 static std::string truncate(std::string str)
@@ -32,16 +81,16 @@ static std::string truncate(std::string str)
 void Contact::displayShort(int index) const
 {
     std::cout << std::setw(10) << index << "|"
-              << std::setw(10) << truncate(firstName) << "|"
-              << std::setw(10) << truncate(lastName) << "|"
-              << std::setw(10) << truncate(nickname) << std::endl;
+              << std::setw(10) << truncate(_firstName) << "|"
+              << std::setw(10) << truncate(_lastName) << "|"
+              << std::setw(10) << truncate(_nickname) << std::endl;
 }
 
 void Contact::displayFull() const
 {
-    std::cout << "First name: " << firstName << std::endl;
-    std::cout << "Last name: " << lastName << std::endl;
-    std::cout << "Nickname: " << nickname << std::endl;
-    std::cout << "Phone number: " << phoneNumber << std::endl;
-    std::cout << "Darkest secret: " << darkestSecret << std::endl;
+    std::cout << "First name: " << _firstName << std::endl;
+    std::cout << "Last name: " << _lastName << std::endl;
+    std::cout << "Nickname: " << _nickname << std::endl;
+    std::cout << "Phone number: " << _phoneNumber << std::endl;
+    std::cout << "Darkest secret: " << _darkestSecret << std::endl;
 }
