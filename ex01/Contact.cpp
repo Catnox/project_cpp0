@@ -1,11 +1,17 @@
 #include "Contact.hpp"
 
-Contact::Contact() : _firstName(""), _lastName(""), _nickname(""),
-                     _phoneNumber(""), _darkestSecret("") {}
+Contact::Contact()
+{
+    std::cout << "Constructor called" << std::endl;
+}
   
-Contact::~Contact() {}
+Contact::~Contact()
+{
+    std::cout << "Destructor called" << std::endl;
+}
 
-static bool isDigits(const std::string &s) {
+static bool isDigits(const std::string &s)
+{
     if (s.empty())
         return false;
     for (size_t i = 0; i < s.size(); ++i)
@@ -14,7 +20,8 @@ static bool isDigits(const std::string &s) {
     return true;
 }
 
-static bool isLettersNoSpace(const std::string &s) {
+static bool isLettersNoSpace(const std::string &s)
+{
     if (s.empty())
         return false;
     for (size_t i = 0; i < s.size(); ++i)
@@ -27,16 +34,20 @@ static bool promptValidate(const std::string &prompt, std::string &out,
                      bool (*validator)(const std::string&), const std::string &errMsg)
 {
     std::string line;
-    while (true) {
+    while (true)
+    {
         std::cout << prompt;
-        if (!std::getline(std::cin, line)) {
+        if (!std::getline(std::cin, line))
+        {
             return false;
         }
-        if (line.empty()) {
+        if (line.empty())
+        {
             std::cout << "No input\n";
             continue;
         }
-        if (validator(line)) {
+        if (validator(line))
+        {
             out = line;
             return true;
         }
@@ -44,7 +55,10 @@ static bool promptValidate(const std::string &prompt, std::string &out,
     }
 }
 
-static bool notEmpty(const std::string &s) { return !s.empty(); }
+static bool notEmpty(const std::string &s)
+{
+    return !s.empty();
+}
 
 bool Contact::setInfo()
 {

@@ -4,23 +4,29 @@
 #include <climits>
 #include <cctype>
 
-PhoneBook::PhoneBook() : nextIndex(0), size(0) {}
+PhoneBook::PhoneBook() : _nextIndex(0), _size(0)
+{
+    std::cout << "Constructor called" << std::endl;
+}
 
-PhoneBook::~PhoneBook() {}
+PhoneBook::~PhoneBook()
+{
+    std::cout << "Destructor called" << std::endl;
+}
 
 void PhoneBook::addContact()
 {
-    if (!contacts[nextIndex].setInfo())
+    if (!_contacts[_nextIndex].setInfo())
         return;
 
-    nextIndex = (nextIndex + 1) % 8;
-    if (size < 8)
-        size++;
+    _nextIndex = (_nextIndex + 1) % 8;
+    if (_size < 8)
+        _size++;
 }
 
 void PhoneBook::searchContact() const
 {
-    if (size == 0)
+    if (_size == 0)
 	{
         std::cout << "PhoneBook is empty." << std::endl;
         return;
@@ -30,8 +36,8 @@ void PhoneBook::searchContact() const
               << std::setw(10) << "Last Name" << "|"
               << std::setw(10) << "Nickname" << std::endl;
 
-    for (int i = 0; i < size; i++)
-        contacts[i].displayShort(i);
+    for (int i = 0; i < _size; i++)
+        _contacts[i].displayShort(i);
 
     std::cout << "Enter index to view details: ";
     int index;
@@ -51,7 +57,8 @@ void PhoneBook::searchContact() const
         return;
     }
     // skip trailing whitespace
-    while (*endptr && std::isspace(static_cast<unsigned char>(*endptr))) ++endptr;
+    while (*endptr && std::isspace(static_cast<unsigned char>(*endptr)))
+        ++endptr;
     if (*endptr != '\0') {
         // leftover non-space characters
         std::cout << "Invalid input." << std::endl;
@@ -63,12 +70,12 @@ void PhoneBook::searchContact() const
         return;
     }
     index = static_cast<int>(val);
-    if (index < 0 || index >= size)
+    if (index < 0 || index >= _size)
     {
         std::cout << "Invalid index." << std::endl;
     }
     else
     {
-        contacts[index].displayFull();
+        _contacts[index].displayFull();
     }
 }
