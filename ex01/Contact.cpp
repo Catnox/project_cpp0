@@ -2,12 +2,12 @@
 
 Contact::Contact()
 {
-    std::cout << "Constructor called" << std::endl;
+    std::cout << "Contact constructor called" << std::endl;
 }
   
 Contact::~Contact()
 {
-    std::cout << "Destructor called" << std::endl;
+    std::cout << "Contact destructor called" << std::endl;
 }
 
 static bool isDigits(const std::string &s)
