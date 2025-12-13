@@ -1,12 +1,12 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
+// Canonical form
 FragTrap::FragTrap() : ClapTrap() {
+    _hitPoints = 100;
+    _energyPoints = 100;
+    _attackDamage = 30;
     std::cout << "FragTrap Default constructed." << std::endl;
-}
-
-FragTrap::FragTrap(const std::string &name) : ClapTrap(name) {
-    std::cout << "FragTrap " << name << " constructed." << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap &other) : ClapTrap(other) {
@@ -22,6 +22,15 @@ FragTrap::~FragTrap() {
     std::cout << "FragTrap " << _name << " destructed." << std::endl;
 }
 
+// Additional constructor
+FragTrap::FragTrap(const std::string &name) : ClapTrap(name) {
+    _hitPoints = 100;
+    _energyPoints = 100;
+    _attackDamage = 30;
+    std::cout << "FragTrap " << name << " constructed." << std::endl;
+}
+
+// Member functions
 void FragTrap::attack(const std::string &target) {
     if (_energyPoints > 0 && _hitPoints > 0) {
         _energyPoints--;

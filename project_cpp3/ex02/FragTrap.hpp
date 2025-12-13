@@ -4,11 +4,14 @@
 
 class FragTrap : public ClapTrap {
 public:
+    // Canonical form
     FragTrap();
-    FragTrap(const std::string &name);
     FragTrap(const FragTrap &other);
     FragTrap &operator=(const FragTrap &other);
     ~FragTrap();
+    // Additional constructor
+    FragTrap(const std::string &name);
+    // Member functions
     void attack(const std::string &target);
     void highFivesGuys();
 };
