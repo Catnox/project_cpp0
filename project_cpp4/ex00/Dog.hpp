@@ -5,10 +5,12 @@
 class Dog : public Animal
 {
     public:
+        // Canonical form
         Dog();
         Dog(const Dog &other);
         Dog &operator=(const Dog &other);
         ~Dog();
+        // Member function
         void makeSound() const;
 };
 

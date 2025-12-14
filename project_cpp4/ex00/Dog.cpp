@@ -1,5 +1,6 @@
 #include "Dog.hpp"
 
+// Canonical form
 Dog::Dog() : Animal()
 {
     _type = "Dog";
@@ -24,6 +25,7 @@ Dog::~Dog()
     std::cout << "Dog destructed." << std::endl;
 }
 
+// Member function
 void Dog::makeSound() const
 {
     std::cout << "Woof Woof!" << std::endl;

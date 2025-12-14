@@ -5,10 +5,12 @@
 class WrongCat : public WrongAnimal
 {
     public:
+        // Canonical form
         WrongCat();
         WrongCat(const WrongCat &other);
         WrongCat &operator=(const WrongCat &other);
         ~WrongCat();
+        // Member function
         void makeSound() const;
 };
 

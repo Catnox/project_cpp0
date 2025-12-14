@@ -1,5 +1,6 @@
 #include "Brain.hpp"
 
+// Canonical form
 Brain::Brain()
 {
     std::cout << "Brain Default constructed." << std::endl;
@@ -28,12 +29,14 @@ Brain::~Brain()
     std::cout << "Brain destructed." << std::endl;
 }
 
+// Setter
 void Brain::setIdea(int index, const std::string &idea)
 {
     if (index >= 0 && index < 100)
         ideas[index] = idea;
 }
 
+// Getter
 std::string Brain::getIdea(int index) const
 {
     if (index >= 0 && index < 100)

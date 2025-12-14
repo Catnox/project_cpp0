@@ -1,5 +1,6 @@
 #include "Cat.hpp"
 
+// Canonical form
 Cat::Cat() : Animal()
 {
     _type = "Cat";
@@ -24,6 +25,7 @@ Cat::~Cat()
     std::cout << "Cat destructed." << std::endl;
 }
 
+// Member function
 void Cat::makeSound() const
 {
     std::cout << "Meow!" << std::endl;

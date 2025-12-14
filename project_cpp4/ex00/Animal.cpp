@@ -1,5 +1,6 @@
 #include "Animal.hpp"
 
+// Canonical form
 Animal::Animal() : _type("Animal")
 {
     std::cout << "Animal Default constructed." << std::endl;
@@ -23,11 +24,13 @@ Animal::~Animal()
     std::cout << "Animal destructed." << std::endl;
 }
 
+// Getter
 std::string Animal::getType() const
 {
     return _type;
 }
 
+// Member function
 void Animal::makeSound() const
 {
     std::cout << "Animal sound!" << std::endl;

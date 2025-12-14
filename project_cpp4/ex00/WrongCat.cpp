@@ -1,5 +1,6 @@
 #include "WrongCat.hpp"
 
+// Canonical form
 WrongCat::WrongCat() : WrongAnimal()
 {
     _type = "WrongCat";
@@ -24,6 +25,7 @@ WrongCat::~WrongCat()
     std::cout << "WrongCat destructed." << std::endl;
 }
 
+// Member function
 void WrongCat::makeSound() const
 {
     std::cout << "WrongCat Meow!" << std::endl;
