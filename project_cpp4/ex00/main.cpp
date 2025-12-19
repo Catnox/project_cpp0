@@ -30,28 +30,5 @@ int main()
     delete wrongCat;
     delete wrongMeta;
 
-    std::cout << std::endl << "=== Test copie et assignation ===" << std::endl;
-    Dog dog1;
-    Dog dog2(dog1);
-    Dog dog3;
-    dog3 = dog1;
-
-    Cat cat1;
-    Cat cat2(cat1);
-    Cat cat3;
-    cat3 = cat1;
-
-    std::cout << std::endl << "=== Test tableau d'animaux ===" << std::endl;
-    const int size = 4;
-    Animal* animals[size];
-    for (int i = 0; i < size / 2; i++)
-        animals[i] = new Dog();
-    for (int i = size / 2; i < size; i++)
-        animals[i] = new Cat();
-    for (int i = 0; i < size; i++)
-        animals[i]->makeSound();
-    for (int i = 0; i < size; i++)
-        delete animals[i];
-
     return 0;
 }

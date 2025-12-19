@@ -1,16 +1,16 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
-Animal::Animal() : _type("Animal")
+AAnimal::AAnimal() : _type("Animal")
 {
     std::cout << "Animal Default constructed." << std::endl;
 }
 
-Animal::Animal(const Animal &other) : _type(other._type)
+AAnimal::AAnimal(const AAnimal &other) : _type(other._type)
 {
     std::cout << "Animal copy constructed." << std::endl;
 }
 
-Animal &Animal::operator=(const Animal &other)
+AAnimal &AAnimal::operator=(const AAnimal &other)
 {
     if (this != &other) {
         _type = other._type;
@@ -18,12 +18,12 @@ Animal &Animal::operator=(const Animal &other)
     return *this;
 }
 
-Animal::~Animal()
+AAnimal::~AAnimal()
 {
     std::cout << "Animal destructed." << std::endl;
 }
 
-std::string Animal::getType() const
+std::string AAnimal::getType() const
 {
     return _type;
 }

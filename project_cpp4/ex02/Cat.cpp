@@ -1,13 +1,13 @@
 #include "Cat.hpp"
 
-Cat::Cat() : Animal()
+Cat::Cat() : AAnimal()
 {
     _type = "Cat";
     _brain = new Brain();
     std::cout << "Cat Default constructed." << std::endl;
 }
 
-Cat::Cat(const Cat &other) : Animal(other)
+Cat::Cat(const Cat &other) : AAnimal(other)
 {
     _brain = new Brain(*other._brain);
     std::cout << "Cat copy constructed." << std::endl;
@@ -16,7 +16,7 @@ Cat::Cat(const Cat &other) : Animal(other)
 Cat &Cat::operator=(const Cat &other)
 {
     if (this != &other) {
-        Animal::operator=(other);
+        AAnimal::operator=(other);
         delete _brain;
         _brain = new Brain(*other._brain);
     }
