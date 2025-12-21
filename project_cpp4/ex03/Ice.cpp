@@ -1,12 +1,15 @@
 #include "Ice.hpp"
 #include "ICharacter.hpp"
 
+// Canonical form
 Ice::Ice() : AMateria("ice")
 {
+	std::cout << "Ice default constructor called" << std::endl;
 }
 
 Ice::Ice(Ice const & other) : AMateria(other)
 {
+	std::cout << "Ice copy constructor called" << std::endl;
 }
 
 Ice & Ice::operator=(Ice const & other)
@@ -18,8 +21,10 @@ Ice & Ice::operator=(Ice const & other)
 
 Ice::~Ice()
 {
+	std::cout << "Ice destructor called" << std::endl;
 }
 
+// Member functions
 AMateria* Ice::clone() const
 {
 	return new Ice(*this);

@@ -12,14 +12,18 @@ protected:
 	std::string _type;
 
 public:
+	// Canonical form
 	AMateria();
-	AMateria(std::string const & type);
 	AMateria(AMateria const & other);
-	AMateria & operator=(AMateria const & other);
+	AMateria &operator=(AMateria const & other);
 	virtual ~AMateria();
-
-	std::string const & getType() const;
+	// Custom constructor
+	AMateria(std::string const & type);
+	// Getter
+	std::string const &getType() const;
+	// Pure virtual member functions
 	virtual AMateria* clone() const = 0;
+	// Member function
 	virtual void use(ICharacter& target);
 };
 

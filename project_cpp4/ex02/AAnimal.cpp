@@ -1,5 +1,6 @@
 #include "AAnimal.hpp"
 
+// Canonical form
 AAnimal::AAnimal() : _type("Animal")
 {
     std::cout << "Animal Default constructed." << std::endl;
@@ -23,6 +24,7 @@ AAnimal::~AAnimal()
     std::cout << "Animal destructed." << std::endl;
 }
 
+// Getter
 std::string AAnimal::getType() const
 {
     return _type;

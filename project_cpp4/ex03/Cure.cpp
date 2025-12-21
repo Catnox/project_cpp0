@@ -1,12 +1,15 @@
 #include "Cure.hpp"
 #include "ICharacter.hpp"
 
+// Canonical form
 Cure::Cure() : AMateria("cure")
 {
+	std::cout << "Cure default constructor called" << std::endl;
 }
 
 Cure::Cure(Cure const & other) : AMateria(other)
 {
+	std::cout << "Cure copy constructor called" << std::endl;
 }
 
 Cure & Cure::operator=(Cure const & other)
@@ -18,8 +21,10 @@ Cure & Cure::operator=(Cure const & other)
 
 Cure::~Cure()
 {
+	std::cout << "Cure destructor called" << std::endl;
 }
 
+// Member functions
 AMateria* Cure::clone() const
 {
 	return new Cure(*this);

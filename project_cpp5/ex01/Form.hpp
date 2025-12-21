@@ -18,10 +18,12 @@ class Form
 	public:
 		// Orthodox Canonical Form
 		Form();
-		Form(const std::string& name, int gradeToSign, int gradeToExecute);
 		Form(const Form& other);
 		Form& operator=(const Form& other);
 		~Form();
+
+		// Custom constructor
+		Form(const std::string& name, int gradeToSign, int gradeToExecute);
 
 		// Getters
 		const std::string&	getName() const;

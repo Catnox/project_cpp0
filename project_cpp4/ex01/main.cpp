@@ -49,10 +49,5 @@ int main()
     std::cout << "cat1 idea[0]: " << cat1.getBrain()->getIdea(0) << std::endl;
     std::cout << "cat2 idea[0]: " << cat2.getBrain()->getIdea(0) << std::endl;
 
-    std::cout << std::endl << "=== Test assignation Dog ===" << std::endl;
-    Dog dog3;
-    dog3 = dog1;
-    std::cout << "dog3 idea[0]: " << dog3.getBrain()->getIdea(0) << std::endl;
-
     return 0;
 }

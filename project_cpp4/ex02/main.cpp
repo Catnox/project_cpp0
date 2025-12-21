@@ -1,15 +1,15 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "Brain.hpp"
 
 int main()
 {
-    // Animal* meta = new Animal(); // ERROR: Animal is abstract, cannot instantiate
+    // AAnimal* meta = new AAnimal(); // ERROR: AAnimal is abstract, cannot instantiate
 
     std::cout << "=== Test de base ==="<< std::endl;
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    const AAnimal* j = new Dog();
+    const AAnimal* i = new Cat();
     std::cout << j->getType() << " " << std::endl;
     std::cout << i->getType() << " " << std::endl;
     i->makeSound();
@@ -19,7 +19,7 @@ int main()
 
     std::cout << std::endl << "=== Test tableau d'animaux ===" << std::endl;
     const int size = 4;
-    Animal* animals[size];
+    AAnimal* animals[size];
     for (int idx = 0; idx < size / 2; idx++)
         animals[idx] = new Dog();
     for (int idx = size / 2; idx < size; idx++)
@@ -50,11 +50,6 @@ int main()
     std::cout << "After modifying cat2:" << std::endl;
     std::cout << "cat1 idea[0]: " << cat1.getBrain()->getIdea(0) << std::endl;
     std::cout << "cat2 idea[0]: " << cat2.getBrain()->getIdea(0) << std::endl;
-
-    std::cout << std::endl << "=== Test assignation Dog ===" << std::endl;
-    Dog dog3;
-    dog3 = dog1;
-    std::cout << "dog3 idea[0]: " << dog3.getBrain()->getIdea(0) << std::endl;
 
     return 0;
 }

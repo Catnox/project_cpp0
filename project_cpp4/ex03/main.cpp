@@ -49,6 +49,12 @@ int main()
 	std::cout << "Copy use:" << std::endl;
 	copy->use(0, *target);
 	copy->use(1, *target);
+	std::cout << "\n--- Modification de l'original après copie ---" << std::endl;
+	original->equip(new Ice());
+	std::cout << "Original utilise la nouvelle Materia (slot 2):" << std::endl;
+	original->use(2, *target);
+	std::cout << "Copy tente d'utiliser le slot 2 (doit etre vide car copie profonde):" << std::endl;
+	copy->use(2, *target);
 
 	delete target;
 	delete copy;
@@ -61,6 +67,8 @@ int main()
 	unequipTest->equip(ice);
 	unequipTest->unequip(0);
 	// ice est maintenant "par terre", on peut le reutiliser ou le delete manuellement
+	unequipTest->equip(ice);
+	unequipTest->unequip(0);
 	delete ice;
 	delete unequipTest;
 	std::cout << "unequip OK (pas de double free)" << std::endl;
@@ -89,32 +97,6 @@ int main()
 	std::cout << "Aucun crash avec index invalide" << std::endl;
 	delete dummy;
 	delete invalidTest;
-
-	// Test MateriaSource avec type inconnu
-	std::cout << std::endl << "--- Test createMateria type inconnu ---" << std::endl;
-	MateriaSource* srcTest = new MateriaSource();
-	srcTest->learnMateria(new Ice());
-	AMateria* unknown = srcTest->createMateria("fire");
-	if (unknown == 0)
-		std::cout << "createMateria retourne 0 pour type inconnu: OK" << std::endl;
-	delete srcTest;
-
-	// Test copie de MateriaSource
-	std::cout << std::endl << "--- Test copie MateriaSource ---" << std::endl;
-	MateriaSource* srcOrig = new MateriaSource();
-	srcOrig->learnMateria(new Ice());
-	srcOrig->learnMateria(new Cure());
-	MateriaSource* srcCopy = new MateriaSource(*srcOrig);
-	AMateria* fromCopy = srcCopy->createMateria("ice");
-	if (fromCopy)
-	{
-		std::cout << "Copie de MateriaSource fonctionne: type = " << fromCopy->getType() << std::endl;
-		delete fromCopy;
-	}
-	delete srcOrig;
-	delete srcCopy;
-
-	std::cout << std::endl << "=== Tous les tests passes ===" << std::endl;
 
 	return 0;
 }

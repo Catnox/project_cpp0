@@ -16,11 +16,13 @@ class Bureaucrat
 	public:
 		// Orthodox Canonical Form
 		Bureaucrat();
-		Bureaucrat(const std::string& name, int grade);
 		Bureaucrat(const Bureaucrat& other);
 		Bureaucrat& operator=(const Bureaucrat& other);
 		~Bureaucrat();
 
+		// Custom constructor
+		Bureaucrat(const std::string& name, int grade);
+		
 		// Getters
 		const std::string&	getName() const;
 		int					getGrade() const;

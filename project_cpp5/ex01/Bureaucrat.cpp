@@ -56,7 +56,7 @@ int Bureaucrat::getGrade() const
 // Increment grade (grade 3 -> grade 2, so we decrease the number)
 void Bureaucrat::incrementGrade()
 {
-	if (_grade - 1 < 1)
+	if (_grade == 1)
 		throw GradeTooHighException();
 	_grade--;
 }
@@ -64,7 +64,7 @@ void Bureaucrat::incrementGrade()
 // Decrement grade (grade 3 -> grade 4, so we increase the number)
 void Bureaucrat::decrementGrade()
 {
-	if (_grade + 1 > 150)
+	if (_grade == 150)
 		throw GradeTooLowException();
 	_grade++;
 }
