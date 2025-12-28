@@ -13,10 +13,12 @@ class RobotomyRequestForm : public AForm
 	public:
 		// Orthodox Canonical Form
 		RobotomyRequestForm();
-		RobotomyRequestForm(const std::string& target);
 		RobotomyRequestForm(const RobotomyRequestForm& other);
 		RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 		virtual ~RobotomyRequestForm();
+
+		// Custom constructor
+		RobotomyRequestForm(const std::string& target);
 
 		// Getter
 		const std::string&	getTarget() const;

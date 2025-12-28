@@ -12,10 +12,12 @@ class ShrubberyCreationForm : public AForm
 	public:
 		// Orthodox Canonical Form
 		ShrubberyCreationForm();
-		ShrubberyCreationForm(const std::string& target);
 		ShrubberyCreationForm(const ShrubberyCreationForm& other);
 		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
 		virtual ~ShrubberyCreationForm();
+
+		// Custom constructor
+		ShrubberyCreationForm(const std::string& target);
 
 		// Getter
 		const std::string&	getTarget() const;

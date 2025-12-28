@@ -7,17 +7,6 @@ Bureaucrat::Bureaucrat() : _name("Default"), _grade(150)
 	std::cout << "Bureaucrat default constructor called" << std::endl;
 }
 
-// Parameterized constructor
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name)
-{
-	std::cout << "Bureaucrat parameterized constructor called" << std::endl;
-	if (grade < 1)
-		throw GradeTooHighException();
-	if (grade > 150)
-		throw GradeTooLowException();
-	_grade = grade;
-}
-
 // Copy constructor
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade)
 {
@@ -41,6 +30,17 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Bureaucrat destructor called" << std::endl;
 }
 
+// Parameterized constructor
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name)
+{
+	std::cout << "Bureaucrat parameterized constructor called" << std::endl;
+	if (grade < 1)
+		throw GradeTooHighException();
+	if (grade > 150)
+		throw GradeTooLowException();
+	_grade = grade;
+}
+
 // Getters
 const std::string& Bureaucrat::getName() const
 {
@@ -55,7 +55,7 @@ int Bureaucrat::getGrade() const
 // Increment grade (grade 3 -> grade 2, so we decrease the number)
 void Bureaucrat::incrementGrade()
 {
-	if (_grade - 1 < 1)
+	if (_grade == 1)
 		throw GradeTooHighException();
 	_grade--;
 }
@@ -63,7 +63,7 @@ void Bureaucrat::incrementGrade()
 // Decrement grade (grade 3 -> grade 4, so we increase the number)
 void Bureaucrat::decrementGrade()
 {
-	if (_grade + 1 > 150)
+	if (_grade == 150)
 		throw GradeTooLowException();
 	_grade++;
 }

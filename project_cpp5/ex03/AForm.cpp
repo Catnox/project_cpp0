@@ -7,17 +7,6 @@ AForm::AForm() : _name("Default Form"), _isSigned(false), _gradeToSign(150), _gr
 	std::cout << "AForm default constructor called" << std::endl;
 }
 
-// Parameterized constructor
-AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute)
-	: _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
-{
-	std::cout << "AForm parameterized constructor called" << std::endl;
-	if (gradeToSign < 1 || gradeToExecute < 1)
-		throw GradeTooHighException();
-	if (gradeToSign > 150 || gradeToExecute > 150)
-		throw GradeTooLowException();
-}
-
 // Copy constructor
 AForm::AForm(const AForm& other)
 	: _name(other._name), _isSigned(other._isSigned),
@@ -41,6 +30,17 @@ AForm& AForm::operator=(const AForm& other)
 AForm::~AForm()
 {
 	std::cout << "AForm destructor called" << std::endl;
+}
+
+// Parameterized constructor
+AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute)
+	: _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
+{
+	std::cout << "AForm parameterized constructor called" << std::endl;
+	if (gradeToSign < 1 || gradeToExecute < 1)
+		throw GradeTooHighException();
+	if (gradeToSign > 150 || gradeToExecute > 150)
+		throw GradeTooLowException();
 }
 
 // Getters

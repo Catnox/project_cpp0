@@ -7,13 +7,6 @@ RobotomyRequestForm::RobotomyRequestForm()
 	std::cout << "RobotomyRequestForm default constructor called" << std::endl;
 }
 
-// Parameterized constructor
-RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
-	: AForm("RobotomyRequestForm", 72, 45), _target(target)
-{
-	std::cout << "RobotomyRequestForm parameterized constructor called" << std::endl;
-}
-
 // Copy constructor
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
 	: AForm(other), _target(other._target)
@@ -37,6 +30,13 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 RobotomyRequestForm::~RobotomyRequestForm()
 {
 	std::cout << "RobotomyRequestForm destructor called" << std::endl;
+}
+
+// Parameterized constructor
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
+	: AForm("RobotomyRequestForm", 72, 45), _target(target)
+{
+	std::cout << "RobotomyRequestForm parameterized constructor called" << std::endl;
 }
 
 // Getter

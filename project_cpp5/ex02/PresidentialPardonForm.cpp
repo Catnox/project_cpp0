@@ -7,13 +7,6 @@ PresidentialPardonForm::PresidentialPardonForm()
 	std::cout << "PresidentialPardonForm default constructor called" << std::endl;
 }
 
-// Parameterized constructor
-PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
-	: AForm("PresidentialPardonForm", 25, 5), _target(target)
-{
-	std::cout << "PresidentialPardonForm parameterized constructor called" << std::endl;
-}
-
 // Copy constructor
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
 	: AForm(other), _target(other._target)
@@ -37,6 +30,13 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 PresidentialPardonForm::~PresidentialPardonForm()
 {
 	std::cout << "PresidentialPardonForm destructor called" << std::endl;
+}
+
+// Parameterized constructor
+PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
+	: AForm("PresidentialPardonForm", 25, 5), _target(target)
+{
+	std::cout << "PresidentialPardonForm parameterized constructor called" << std::endl;
 }
 
 // Getter

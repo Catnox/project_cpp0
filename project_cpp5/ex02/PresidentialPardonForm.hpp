@@ -11,10 +11,12 @@ class PresidentialPardonForm : public AForm
 	public:
 		// Orthodox Canonical Form
 		PresidentialPardonForm();
-		PresidentialPardonForm(const std::string& target);
 		PresidentialPardonForm(const PresidentialPardonForm& other);
 		PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 		virtual ~PresidentialPardonForm();
+
+		// Custom constructor
+		PresidentialPardonForm(const std::string& target);
 
 		// Getter
 		const std::string&	getTarget() const;
